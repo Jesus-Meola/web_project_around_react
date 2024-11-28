@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./components/Header.jsx";
-import Main from "./components/Main.jsx";
+import Main from "./components/Main/Main.jsx";
+import Footer from "./components/Footer.jsx";
 import "./pages/index.css";
 
 function App() {
@@ -11,9 +12,7 @@ function App() {
       <div className="page">
         <Header />
         <Main />
-        <footer className="footer">
-          <p className="footer__copyright">&#169; 2024 Alrededor del Mundo</p>
-        </footer>
+        <Footer />
       </div>
     </>
   );
