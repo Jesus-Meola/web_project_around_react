@@ -1,10 +1,9 @@
-import Popup from "../../Popup/Popup.jsx";
-import "./Popup/Popup.jsx";
+import Popup from "../Popup/Popup.jsx";
 
 export default function NewCard(props) {
   const { open, onClose } = props;
   return (
-    <Popup open={props.open} onClose={props.onClose}>
+    <Popup open={open} onClose={onClose}>
       <form className="popup__card-form popup__form">
         <img
           src="/src/images/CloseIcon.png"
@@ -17,8 +16,8 @@ export default function NewCard(props) {
           id="input-title"
           className="popup__card-title popup__input"
           name="title"
-          minlength="2"
-          maxlength="40"
+          minLength="2"
+          maxLength="40"
           placeholder="Titulo"
           required
         />
@@ -29,7 +28,7 @@ export default function NewCard(props) {
           id="input-url"
           className="popup__card-url popup__input"
           name="link"
-          minlength="2"
+          minLength="2"
           placeholder="Enlace a la imagen"
           required
         />

@@ -1,4 +1,17 @@
-function Main() {
+import { useState } from "react";
+import NewCard from "../NewCard/NewCard";
+
+export default function Main() {
+  const [popup, setPopup] = useState(null);
+  const newCardPopup = {
+    tittle: "Nuevo Lugar",
+    children: <NewCard />,
+  };
+
+  function handleOpenPopup(popup) {
+    setPopup(popup);
+  }
+
   return (
     <main className="content">
       <section className="profile">
@@ -47,8 +60,11 @@ function Main() {
           </div>
         </article>
       </template>
+      {popup && (
+        <Popup onClose={setPopup} tittle={popup.tittle}>
+          {popup.children}
+        </Popup>
+      )}
     </main>
   );
 }
-
-export default Main;
