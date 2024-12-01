@@ -21,6 +21,7 @@ export default function Main() {
             src="/src/images/Vector.png"
             alt=""
             className="profile__image-edit"
+            onClick={() => handleOpenPopup(editAvatarPopup)}
           />
         </div>
         <div className="profile__info">
@@ -30,6 +31,7 @@ export default function Main() {
               src="/src/images/editbuttonprofile.svg"
               alt="Button Edit"
               className="profile__edit-button"
+              onClick={() => handleOpenPopup(editProfilePopup)}
             />
           </div>
           <p className="profile__profession"></p>
@@ -38,6 +40,7 @@ export default function Main() {
           src="/src/images/addbuttonprofile.png"
           alt="Button Add"
           className="profile__add-button"
+          onClick={() => handleOpenPopup(newCardPopup)}
         />
       </section>
       <section className="elements"></section>
