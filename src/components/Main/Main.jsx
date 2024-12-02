@@ -1,5 +1,8 @@
 import { useState } from "react";
-import NewCard from "../NewCard/NewCard";
+import NewCard from "../NewCard/NewCard.jsx";
+import Popup from "../Popup/Popup.jsx";
+import editAvatarPopup from "../EditAvatar/EditAvatar.jsx";
+import editProfilePopup from "../EditProfile/EditProfile.jsx";
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
@@ -10,6 +13,10 @@ export default function Main() {
 
   function handleOpenPopup(popup) {
     setPopup(popup);
+  }
+
+  function handleClosePopup() {
+    setPopup(null);
   }
 
   return (
@@ -64,7 +71,7 @@ export default function Main() {
         </article>
       </template>
       {popup && (
-        <Popup onClose={setPopup} tittle={popup.tittle}>
+        <Popup open={true} onClose={handleClosePopup} tittle={popup.tittle}>
           {popup.children}
         </Popup>
       )}
