@@ -1,11 +1,6 @@
 export default function NewCard() {
   return (
     <form className="popup__card-form popup__form">
-      <img
-        src="/src/images/CloseIcon.png"
-        alt="Boton de Cierre"
-        className="popup__card-button-closed popup__button-closed"
-      />
       <h3 className="popup__card-header">Nuevo Lugar</h3>
       <input
         type="text"

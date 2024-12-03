@@ -1,11 +1,6 @@
 export default function EditAvatar() {
   return (
     <form className="popup__form popup__profile-form">
-      <img
-        src="/src/images/CloseIcon.png"
-        alt="Boton de Cierre"
-        className="popup__button-closed"
-      />
       <h3 className="popup__header">Cambiar foto de perfil</h3>
       <input
         type="url"

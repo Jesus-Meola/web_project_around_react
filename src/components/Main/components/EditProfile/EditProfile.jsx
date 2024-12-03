@@ -1,11 +1,6 @@
 export default function EditProfile() {
   return (
     <form className="popup__profile-form popup__form">
-      <img
-        src="/src/images/CloseIcon.png"
-        alt="Boton de Cierre"
-        className="popup__button-closed"
-      />
       <h3 className="popup__header">Edit profile</h3>
       <input
         type="text"

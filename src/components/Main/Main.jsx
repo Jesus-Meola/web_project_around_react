@@ -24,6 +24,12 @@ const cards = [
   },
 ];
 
+<ul className="cards__list">
+  {cards.map((card) => (
+    <Card key={card._id} card={card} />
+  ))}
+</ul>;
+
 export default function Main() {
   const [popup, setPopup] = useState(null);
 
@@ -41,12 +47,6 @@ export default function Main() {
     tittle: "Editar Perfil",
     children: <EditProfile />,
   };
-
-  <ul className="cards__list">
-    {cards.map((card) => (
-      <Card key={card._id} card={card} />
-    ))}
-  </ul>;
 
   function handleOpenPopup(popup) {
     setPopup(popup);
