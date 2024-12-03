@@ -1,8 +1,4 @@
-import Popup from "../Popup/Popup.jsx";
-
-export default function NewCard(props) {
-  const { open, onClose } = props;
-  console.log(props);
+export default function NewCard() {
   return (
     <form className="popup__card-form popup__form">
       <img
