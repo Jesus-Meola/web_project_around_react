@@ -24,12 +24,6 @@ const cards = [
   },
 ];
 
-<ul className="cards__list">
-  {cards.map((card) => (
-    <Card key={card._id} card={card} />
-  ))}
-</ul>;
-
 export default function Main() {
   const [popup, setPopup] = useState(null);
 
@@ -46,6 +40,11 @@ export default function Main() {
   const editProfilePopup = {
     tittle: "Editar Perfil",
     children: <EditProfile />,
+  };
+
+  const imageCardPopup = {
+    tittle: "Imagen",
+    children: <ImagePopup />,
   };
 
   function handleOpenPopup(popup) {
@@ -87,7 +86,13 @@ export default function Main() {
           onClick={() => handleOpenPopup(newCardPopup)}
         />
       </section>
-      <section className="elements"></section>
+      <section className="elements">
+        <ul className="cards__list">
+          {cards.map((card) => (
+            <Card key={card._id} card={card} />
+          ))}
+        </ul>
+      </section>
 
       <template className="template-card">
         <article className="elements__card">
