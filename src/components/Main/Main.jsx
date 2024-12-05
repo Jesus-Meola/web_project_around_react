@@ -92,7 +92,7 @@ export default function Main() {
         />
       </section>
       <section className="elements">
-        <ul className="cards__list">
+        <div className="elements__list">
           {cards.map((card) => (
             <Card
               key={card._id}
@@ -100,7 +100,7 @@ export default function Main() {
               handleOpenPopup={handleOpenImage}
             />
           ))}
-        </ul>
+        </div>
       </section>
 
       <template className="template-card">

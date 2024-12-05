@@ -13,9 +13,13 @@
   left: 33%;
 }
 
+.popup__content {
+  position: relative;
+}
+
 .popup__button-closed {
-  top: 140px;
-  right: 190px;
+  top: -500px;
+  right: -770px;
   cursor: pointer;
   position: absolute;
 }
