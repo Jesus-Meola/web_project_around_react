@@ -1,9 +1,15 @@
 .popup {
   display: none;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup__form {
-  position: fixed;
   display: flex;
   flex-direction: column;
   width: 430px;
@@ -18,8 +24,8 @@
 }
 
 .popup__button-closed {
-  top: -500px;
-  right: -770px;
+  top: -35px;
+  right: -35px;
   cursor: pointer;
   position: absolute;
 }

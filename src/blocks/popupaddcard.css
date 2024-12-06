@@ -3,7 +3,6 @@
 }
 
 .popup__card-form {
-  position: fixed;
   display: flex;
   flex-direction: column;
   width: 430px;
