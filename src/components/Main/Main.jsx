@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Popup from "../Main/components/Popup/Popup.jsx";
-import NewCard from "../Main/components/NewCard/NewCard.jsx";
-import EditAvatar from "../Main/components/EditAvatar/EditAvatar.jsx";
-import EditProfile from "../Main/components/EditProfile/EditProfile.jsx";
-import Card from "../Main/components/Card/Card.jsx";
-import ImagePopup from "../Main/components/ImagePopup/ImagePopup.jsx";
+import Popup from "../Popup/Popup.jsx";
+import Card from "../Card/Card.jsx";
+import NewCard from "../NewCard/NewCard.jsx";
+import EditAvatar from "../EditAvatar/EditAvatar.jsx";
+import EditProfile from "../EditProfile/EditProfile.jsx";
+import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 
 const cards = [
   {
