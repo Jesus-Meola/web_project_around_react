@@ -5,6 +5,7 @@ import NewCard from "../NewCard/NewCard.jsx";
 import EditAvatar from "../EditAvatar/EditAvatar.jsx";
 import EditProfile from "../EditProfile/EditProfile.jsx";
 import ImagePopup from "../ImagePopup/ImagePopup.jsx";
+import RemoveCard from "../RemoveCard/RemoveCard.jsx";
 
 const cards = [
   {
@@ -27,6 +28,7 @@ const cards = [
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
+  const [cardToRemove, setCardToRemove] = useState(null);
 
   const newCardPopup = {
     tittle: "Nuevo Lugar",
@@ -48,12 +50,22 @@ export default function Main() {
     children: <ImagePopup card={card} onClose={handleClosePopup} />,
   });
 
+  const removeCardPopup = {
+    tittle: "Eliminar Lugar",
+    children: <RemoveCard onClose={handleClosePopup} />,
+  };
+
   function handleOpenPopup(popup) {
     setPopup(popup);
   }
 
   function handleOpenImage(card) {
     setPopup(imageCardPopup(card));
+  }
+
+  function handleRemoveCard(card) {
+    setCardToRemove(card);
+    setPopup(removeCardPopup);
   }
 
   function handleClosePopup() {
@@ -98,6 +110,7 @@ export default function Main() {
               key={card._id}
               card={card}
               handleOpenPopup={handleOpenImage}
+              onRemove={handleRemoveCard}
             />
           ))}
         </div>

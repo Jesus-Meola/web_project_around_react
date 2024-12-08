@@ -18,6 +18,7 @@ export default function Card(props) {
         src="/src/images/papelera.svg"
         alt="Imagen Papelera"
         className="elements__image-trash"
+        onClick={() => props.onRemove(props.card)}
       />
       <div className="elements__text">
         <h1 className="elements__title">{name}</h1>
