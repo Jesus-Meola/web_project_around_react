@@ -1,8 +1,17 @@
-# React + Vite
+Nombre del Proyecto: Viajando por el Mundo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Descripcion: es un proyecto basado en postales de algunos lugares del mundo donde cada persona puede colocar su perfil y añadir las fotos de los paisajes que mas le gustan y ha visitado.
 
-Currently, two official plugins are available:
+Se usaron las Tecnologias HTML, CSS, JavaScript y React para el desarrollo del proyecto.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Se le hacen mejoras al Proyecto usando Programacion Orientada a Objetos (POO) creando las clases independientes para cada componente del proyecto.
+
+Se implementa el uso de un Servidor para la API de la base de datos donde se almacenan los datos de los usuarios y las tarjetas para el Backend.
+
+Para el Frontend se usa el framework React, que es una libreria de JavaScript que se usa para crear interfaces de usuario interactivas.
+
+Se ha usado GitHub para el control de versiones y el manejo de la colaboracion.
+
+Github-pages:
+
+https://jesus-meola.github.io/web_project_around_react/
