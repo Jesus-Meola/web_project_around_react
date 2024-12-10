@@ -76,7 +76,11 @@ export default function Main() {
     <main className="content">
       <section className="profile">
         <div className="profile__image-container">
-          <img src="" alt="" className="profile__image" />
+          <img
+            src="https://picsum.photos/seed/picsum/200/300"
+            alt="Image Profile"
+            className="profile__image"
+          />
           <img
             src="/src/images/Vector.png"
             alt=""
@@ -86,7 +90,7 @@ export default function Main() {
         </div>
         <div className="profile__info">
           <div className="profile__name">
-            <p className="profile__text"></p>
+            <p className="profile__text">Jesús Meola</p>
             <img
               src="/src/images/editbuttonprofile.svg"
               alt="Button Edit"
@@ -94,7 +98,7 @@ export default function Main() {
               onClick={() => handleOpenPopup(editProfilePopup)}
             />
           </div>
-          <p className="profile__profession"></p>
+          <p className="profile__profession">Developer</p>
         </div>
         <img
           src="/src/images/addbuttonprofile.png"
