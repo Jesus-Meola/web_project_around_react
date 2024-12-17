@@ -75,6 +75,10 @@ class Api {
       headers: this.token,
     }).then(this._checkResponse);
   };
+
+  changeLikeCardStatus(cardId, isLiked) {
+    return isLiked ? this.likeCard(cardId) : this.deleteLikeCard(cardId);
+  }
 }
 
 const api = new Api("https://around-api.es.tripleten-services.com/v1", {

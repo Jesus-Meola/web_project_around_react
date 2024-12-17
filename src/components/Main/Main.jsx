@@ -9,25 +9,6 @@ import RemoveCard from "../RemoveCard/RemoveCard.jsx";
 import api from "../../utils/api.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-// const cards = [
-//   {
-//     isLiked: false,
-//     _id: "5d1f0611d321eb4bdcd707dd",
-//     name: "Yosemite Valley",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-//     owner: "5d1f0611d321eb4bdcd707dd",
-//     createdAt: "2019-07-05T08:10:57.741Z",
-//   },
-//   {
-//     isLiked: false,
-//     _id: "5d1f064ed321eb4bdcd707de",
-//     name: "Lake Louise",
-//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-//     owner: "5d1f0611d321eb4bdcd707dd",
-//     createdAt: "2019-07-05T08:11:58.324Z",
-//   },
-// ];
-
 export default function Main() {
   const [popup, setPopup] = useState(null);
   const [cardToRemove, setCardToRemove] = useState(null);
@@ -61,7 +42,9 @@ export default function Main() {
 
   const removeCardPopup = {
     tittle: "Eliminar Lugar",
-    children: <RemoveCard onClose={handleClosePopup} />,
+    children: (
+      <RemoveCard onClose={handleClosePopup} onConfirm={handleCardDelete} />
+    ),
   };
 
   function handleOpenPopup(popup) {
@@ -79,6 +62,37 @@ export default function Main() {
 
   function handleClosePopup() {
     setPopup(null);
+  }
+
+  async function handleCardLike(card) {
+    const isLiked = card.isLiked;
+
+    try {
+      const newCard = isLiked
+        ? await api.deleteLikeCard(card._id)
+        : await api.likeCard(card._id);
+
+      setCards((state) =>
+        state.map((currentCard) =>
+          currentCard._id === card._id ? newCard : currentCard
+        )
+      );
+    } catch (error) {
+      console.error("Error al cambiar el estado de like:", error);
+    }
+  }
+
+  async function handleCardDelete(card) {
+    if (!cardToRemove) return;
+    try {
+      await api.deleteCard(card._id);
+
+      setCards((state) =>
+        state.filter((currentCard) => currentCard._id !== card._id)
+      );
+    } catch (error) {
+      console.error("Error al eliminar la tarjeta:", error);
+    }
   }
 
   return (
@@ -125,7 +139,9 @@ export default function Main() {
               key={card._id}
               card={card}
               handleOpenPopup={handleOpenImage}
-              onRemove={handleRemoveCard}
+              // onRemove={handleRemoveCard}
+              onCardLike={handleCardLike}
+              onCardDelete={handleRemoveCard}
             />
           ))}
         </div>

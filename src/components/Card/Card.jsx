@@ -6,6 +6,18 @@ export default function Card(props) {
     name,
   };
 
+  const cardLikeButtonClassName = `elements__image-like ${
+    isLiked ? "elements__image-like_active" : ""
+  }`;
+
+  const handleLikeClick = () => {
+    props.onCardLike(props.card);
+  };
+
+  const handleDeleteClick = () => {
+    props.onCardDelete(props.card);
+  };
+
   return (
     <article className="elements__card">
       <img
@@ -18,15 +30,15 @@ export default function Card(props) {
         src="/src/images/papelera.svg"
         alt="Imagen Papelera"
         className="elements__image-trash"
-        onClick={() => props.onRemove(props.card)}
+        onClick={handleDeleteClick}
       />
       <div className="elements__text">
         <h1 className="elements__title">{name}</h1>
         <img
           src="/src/images/corazon.svg"
           alt="Like"
-          className="elements__image-like"
-          onClick={isLiked ? handleOpenPopup : null}
+          className={cardLikeButtonClassName}
+          onClick={handleLikeClick}
         />
       </div>
     </article>
