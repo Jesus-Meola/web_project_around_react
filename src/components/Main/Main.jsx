@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import Popup from "../Popup/Popup.jsx";
 import Card from "../Card/Card.jsx";
 import NewCard from "../NewCard/NewCard.jsx";
@@ -6,29 +6,38 @@ import EditAvatar from "../EditAvatar/EditAvatar.jsx";
 import EditProfile from "../EditProfile/EditProfile.jsx";
 import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 import RemoveCard from "../RemoveCard/RemoveCard.jsx";
+import api from "../../utils/api.js";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-const cards = [
-  {
-    isLiked: false,
-    _id: "5d1f0611d321eb4bdcd707dd",
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:10:57.741Z",
-  },
-  {
-    isLiked: false,
-    _id: "5d1f064ed321eb4bdcd707de",
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:11:58.324Z",
-  },
-];
+// const cards = [
+//   {
+//     isLiked: false,
+//     _id: "5d1f0611d321eb4bdcd707dd",
+//     name: "Yosemite Valley",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+//     owner: "5d1f0611d321eb4bdcd707dd",
+//     createdAt: "2019-07-05T08:10:57.741Z",
+//   },
+//   {
+//     isLiked: false,
+//     _id: "5d1f064ed321eb4bdcd707de",
+//     name: "Lake Louise",
+//     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+//     owner: "5d1f0611d321eb4bdcd707dd",
+//     createdAt: "2019-07-05T08:11:58.324Z",
+//   },
+// ];
 
 export default function Main() {
   const [popup, setPopup] = useState(null);
   const [cardToRemove, setCardToRemove] = useState(null);
+  const [cards, setCards] = useState([]);
+
+  const currentUser = useContext(CurrentUserContext);
+
+  useEffect(() => {
+    api.getCards().then((data) => setCards(data));
+  }, []);
 
   const newCardPopup = {
     tittle: "Nuevo Lugar",
@@ -77,7 +86,7 @@ export default function Main() {
       <section className="profile">
         <div className="profile__image-container">
           <img
-            src="https://picsum.photos/seed/picsum/200/300"
+            src={currentUser?.avatar || "/src/images/default-avatar.png"}
             alt="Image Profile"
             className="profile__image"
           />
@@ -90,7 +99,7 @@ export default function Main() {
         </div>
         <div className="profile__info">
           <div className="profile__name">
-            <p className="profile__text">Jesús Meola</p>
+            <p className="profile__text">{currentUser?.name || "Nombre"}</p>
             <img
               src="/src/images/editbuttonprofile.svg"
               alt="Button Edit"
@@ -98,7 +107,9 @@ export default function Main() {
               onClick={() => handleOpenPopup(editProfilePopup)}
             />
           </div>
-          <p className="profile__profession">Developer</p>
+          <p className="profile__profession">
+            {currentUser?.about || "Profesion"}
+          </p>
         </div>
         <img
           src="/src/images/addbuttonprofile.png"
