@@ -14,7 +14,7 @@ export default function Main() {
   const [cardToRemove, setCardToRemove] = useState(null);
   const [cards, setCards] = useState([]);
 
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, handleUpdateAvatar } = useContext(CurrentUserContext);
 
   useEffect(() => {
     api.getCards().then((data) => setCards(data));
@@ -27,7 +27,12 @@ export default function Main() {
 
   const editAvatarPopup = {
     title: "Editar Avatar",
-    children: <EditAvatar />,
+    children: (
+      <EditAvatar
+        onClose={handleClosePopup}
+        onUpdateAvatar={handleUpdateAvatar}
+      />
+    ),
   };
 
   const editProfilePopup = {

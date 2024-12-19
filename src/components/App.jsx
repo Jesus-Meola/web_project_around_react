@@ -29,6 +29,18 @@ export default function App() {
     })();
   };
 
+  const handleUpdateAvatar = (data) => {
+    (async () => {
+      await api
+        .editAvatar(data.avatar)
+        .then((newData) => {
+          setCurrentUser(newData);
+          handleClosePopup();
+        })
+        .catch((error) => console.error(error));
+    })();
+  };
+
   const handleOpenPopup = (popupData) => {
     setPopup(popupData);
   };
@@ -39,7 +51,9 @@ export default function App() {
 
   return (
     <>
-      <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
+      <CurrentUserContext.Provider
+        value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}
+      >
         <div className="page">
           <Header />
           <Main
