@@ -6,18 +6,47 @@ import Footer from "./Footer/Footer.jsx";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
+  const [popup, setPopup] = useState(null);
 
   useEffect(() => {
-    api.getUserInfo().then((data) => setCurrentUser(data));
+    (async () => {
+      await api.getUserInfo().then((data) => {
+        setCurrentUser(data);
+      });
+    })();
   }, []);
+
+  const handleUpdateUser = (data) => {
+    (async () => {
+      await api
+        .editUser(data.name, data.about)
+        .then((newData) => {
+          setCurrentUser(newData);
+          handleClosePopup();
+        })
+        .catch((error) => console.error(error));
+    })();
+  };
+
+  const handleOpenPopup = (popupData) => {
+    setPopup(popupData);
+  };
+
+  const handleClosePopup = () => {
+    setPopup(null);
+  };
 
   return (
     <>
-      <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
         <div className="page">
           <Header />
-          <Main />
+          <Main
+            onOpenPopup={handleOpenPopup}
+            onClosePopup={handleClosePopup}
+            popup={popup}
+          />
           <Footer />
         </div>
       </CurrentUserContext.Provider>

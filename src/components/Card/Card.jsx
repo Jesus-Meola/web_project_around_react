@@ -1,5 +1,9 @@
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 export default function Card(props) {
   const { name, link, isLiked } = props.card;
+  const { currentUser } = useContext(CurrentUserContext);
 
   const imageComponent = {
     link,

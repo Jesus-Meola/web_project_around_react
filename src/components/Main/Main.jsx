@@ -14,34 +14,34 @@ export default function Main() {
   const [cardToRemove, setCardToRemove] = useState(null);
   const [cards, setCards] = useState([]);
 
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     api.getCards().then((data) => setCards(data));
   }, []);
 
   const newCardPopup = {
-    tittle: "Nuevo Lugar",
+    title: "Nuevo Lugar",
     children: <NewCard />,
   };
 
   const editAvatarPopup = {
-    tittle: "Editar Avatar",
+    title: "Editar Avatar",
     children: <EditAvatar />,
   };
 
   const editProfilePopup = {
-    tittle: "Editar Perfil",
-    children: <EditProfile />,
+    title: "Editar Perfil",
+    children: <EditProfile onClose={handleClosePopup} />,
   };
 
   const imageCardPopup = (card) => ({
-    tittle: "Imagen",
+    title: "Imagen",
     children: <ImagePopup card={card} onClose={handleClosePopup} />,
   });
 
   const removeCardPopup = {
-    tittle: "Eliminar Lugar",
+    title: "Eliminar Lugar",
     children: (
       <RemoveCard onClose={handleClosePopup} onConfirm={handleCardDelete} />
     ),
@@ -166,7 +166,7 @@ export default function Main() {
         </article>
       </template>
       {popup && (
-        <Popup onClose={handleClosePopup} tittle={popup.tittle}>
+        <Popup onClose={handleClosePopup} title={popup.title}>
           {popup.children}
         </Popup>
       )}
