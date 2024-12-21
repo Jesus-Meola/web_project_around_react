@@ -6,18 +6,16 @@ import EditAvatar from "../EditAvatar/EditAvatar.jsx";
 import EditProfile from "../EditProfile/EditProfile.jsx";
 import ImagePopup from "../ImagePopup/ImagePopup.jsx";
 import RemoveCard from "../RemoveCard/RemoveCard.jsx";
-import api from "../../utils/api.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Main({
-  card,
+  cards,
   onCardLike,
   onCardDelete,
   onAddPlaceSubmit,
 }) {
   const [popup, setPopup] = useState(null);
   const [cardToRemove, setCardToRemove] = useState(null);
-  const [cards, setCards] = useState([]);
 
   const { currentUser, handleUpdateAvatar } = useContext(CurrentUserContext);
 
@@ -48,15 +46,18 @@ export default function Main({
     children: <ImagePopup card={card} onClose={handleClosePopup} />,
   });
 
-  const removeCardPopup = {
+  const removeCardPopup = (card) => ({
     title: "Eliminar Lugar",
     children: (
       <RemoveCard
-        onClose={handleClosePopup}
-        onConfirm={() => onCardDelete(card)}
+        card={card}
+        onConfirm={() => {
+          onCardDelete(card); // Llamamos a la función para eliminar la tarjeta
+          handleClosePopup(); // Cerramos el popup después de eliminar
+        }}
       />
     ),
-  };
+  });
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -67,8 +68,7 @@ export default function Main({
   }
 
   function handleRemoveCard(card) {
-    setCardToRemove(card);
-    setPopup(removeCardPopup);
+    setPopup(removeCardPopup(card));
   }
 
   function handleClosePopup() {
@@ -120,7 +120,7 @@ export default function Main({
               card={card}
               handleOpenPopup={handleOpenImage}
               onCardLike={onCardLike}
-              onCardDelete={onCardDelete}
+              onCardDelete={handleRemoveCard}
             />
           ))}
         </div>

@@ -18,23 +18,32 @@ export default function App() {
 
     api
       .getCards()
-      .then((initialCards) => setCards(initialCards))
+      .then((initialCards) => {
+        console.log("Hola", initialCards);
+        setCards(initialCards);
+      })
       .catch((err) => console.error(`Error fetching cards: ${err}`));
   }, []);
 
   const handleCardLike = (card) => {
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
+
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((updatedCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === updatedCard._id ? updatedCard : c))
-        );
+        setCards((state) => {
+          const newCards = state.map((c) =>
+            c._id === updatedCard._id ? updatedCard : c
+          );
+          console.log("Tarjetas actualizadas:", newCards);
+          return newCards;
+        });
       })
       .catch((err) => console.error(`Error updating like status: ${err}`));
   };
 
   const handleCardDelete = (card) => {
+    if (!card || !card._id) return;
     api
       .deleteCard(card._id)
       .then(() => {
