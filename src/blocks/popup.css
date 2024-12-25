@@ -24,7 +24,7 @@
 }
 
 .popup__button-closed {
-  top: 25px;
+  top: -35px;
   right: -35px;
   cursor: pointer;
   position: absolute;

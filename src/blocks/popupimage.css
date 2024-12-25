@@ -25,6 +25,10 @@
   margin-top: 10px;
 }
 
+.popup__image-content {
+  background-color: transparent;
+}
+
 .popup__overlay {
   position: fixed;
   width: 100%;

@@ -19,28 +19,33 @@ export default function App() {
     api
       .getCards()
       .then((initialCards) => {
-        console.log("Hola", initialCards);
-        setCards(initialCards);
+        // Asegúrate de que todas las tarjetas tienen un array likes
+        const validCards = initialCards.map((card) => ({
+          ...card,
+          likes: Array.isArray(card.likes) ? card.likes : [],
+        }));
+        setCards(validCards);
       })
       .catch((err) => console.error(`Error fetching cards: ${err}`));
   }, []);
 
-  const handleCardLike = (card) => {
-    const isLiked = card.likes.some((user) => user._id === currentUser._id);
+  async function handleCardLike(card) {
+    // Usa `isLiked` directamente para determinar el estado del like
+    const isLiked = card.isLiked;
 
-    api
-      .changeLikeCardStatus(card._id, !isLiked)
-      .then((updatedCard) => {
-        setCards((state) => {
-          const newCards = state.map((c) =>
-            c._id === updatedCard._id ? updatedCard : c
-          );
-          console.log("Tarjetas actualizadas:", newCards);
-          return newCards;
-        });
-      })
-      .catch((err) => console.error(`Error updating like status: ${err}`));
-  };
+    try {
+      const updatedCard = await api.changeLikeCardStatus(card._id, !isLiked);
+
+      // Actualiza la lista de tarjetas con la tarjeta actualizada
+      setCards((state) =>
+        state.map((currentCard) =>
+          currentCard._id === card._id ? updatedCard : currentCard
+        )
+      );
+    } catch (error) {
+      console.error("Error al cambiar el estado de 'like':", error);
+    }
+  }
 
   const handleCardDelete = (card) => {
     if (!card || !card._id) return;
@@ -48,6 +53,7 @@ export default function App() {
       .deleteCard(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id));
+        handleClosePopup();
       })
       .catch((err) => console.error(`Error deleting card: ${err}`));
   };

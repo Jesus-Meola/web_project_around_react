@@ -1,19 +1,20 @@
 import { useState } from "react";
 
-export default function NewCard({ onAddPlaceSubmit }) {
+export default function NewCard({ onAddPlaceSubmit, onClose }) {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onAddPlaceSubmit({ name, link });
+    onClose();
 
     setName("");
     setLink("");
   };
   return (
     <form className="popup__card-form popup__form" onSubmit={handleSubmit}>
-      <h3 className="popup__card-header">Nuevo Lugar</h3>
+      {/* <h3 className="popup__card-header">Nuevo Lugar</h3> */}
       <input
         type="text"
         id="input-title"

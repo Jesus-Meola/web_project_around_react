@@ -34,7 +34,7 @@ export default function EditProfile({ onClose }) {
       noValidate
       onSubmit={handleSubmit}
     >
-      <h3 className="popup__header">Edit profile</h3>
+      {/* <h3 className="popup__header">Edit profile</h3> */}
       <input
         type="text"
         id="input-name"

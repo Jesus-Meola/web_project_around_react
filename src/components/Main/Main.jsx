@@ -42,7 +42,7 @@ export default function Main({
   };
 
   const imageCardPopup = (card) => ({
-    title: "Imagen",
+    title: "",
     children: <ImagePopup card={card} onClose={handleClosePopup} />,
   });
 
