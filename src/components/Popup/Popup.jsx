@@ -1,5 +1,5 @@
 export default function Popup(props) {
-  const { onClose, title, children, type } = props;
+  const { onClose, title, children } = props;
   return (
     <div className={`popup ${open ? "popup__open" : ""}`}>
       <div className="popup__overlay" onClick={onClose}></div>
