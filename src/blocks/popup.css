@@ -17,6 +17,10 @@
   border-radius: 10px;
 }
 
+.popup__form-image {
+  background-color: transparent;
+}
+
 .popup__content {
   position: relative;
 }

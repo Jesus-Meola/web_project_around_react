@@ -10,7 +10,11 @@ export default function Popup(props) {
           className="popup__button-closed"
           onClick={onClose}
         />
-        <div className="popup__form">
+        <div
+          className={`popup__form ${
+            children.type.name === "ImagePopup" ? "popup__form-image" : ""
+          }`}
+        >
           {title && <h3 className="popup__header">{title}</h3>}
           {children}
         </div>
